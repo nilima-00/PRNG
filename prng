@@ -1,0 +1,28 @@
+# Create subplots
+fig, (ax1, ax2) = plt.subplots(1, 2, figsize=(12, 5))
+
+# Plot 1: Uniform distribution with different marker
+ax1.scatter(uniform_x, uniform_y, alpha=0.6, s=20, color='navy', marker='^')
+ax1.set_title('Uniform Distribution', fontsize=14, fontweight='bold')
+ax1.set_xlabel('X values')
+ax1.set_ylabel('Y values')
+ax1.grid(True, alpha=0.3)
+ax1.set_xlim(0, 1)
+ax1.set_ylim(0, 1)
+
+# Plot 2: Non-uniform distribution using hexbin (density)
+hb = ax2.hexbin(beta_x, beta_y, gridsize=30, cmap='Reds', extent=(0, 1, 0, 1))
+ax2.set_title('Beta Distribution (Hexbin View)', fontsize=14, fontweight='bold')
+ax2.set_xlabel('X values')
+ax2.set_ylabel('Y values')
+ax2.grid(True, alpha=0.3)
+ax2.set_xlim(0, 1)
+ax2.set_ylim(0, 1)
+
+# Colorbar for hexbin
+cb = fig.colorbar(hb, ax=ax2, orientation='vertical')
+cb.set_label('Density')
+
+plt.savefig('t1_modified.pdf')
+plt.tight_layout()
+plt.show()
